@@ -1,44 +1,96 @@
-class Usuario {
-    constructor (nombre, apellido, libros, mascotas){
-        this.nombre = nombre,
-        this.apellido = apellido,
-        this.libros = libros, // Array de objetos
-        this.mascotas = mascotas // Array de strings 
-    }
+const fs = require("fs");
 
-    getFullName(){
-        return `${this.nombre} ${this.apellido}`
+class Contenedor{
+    
+    constructor(name){
+        this.name = name;
     }
-
-    addMascota( mascota ){
-        this.mascotas.push(mascota)
+    read(){
+        try{
+            const data = fs.readFileSync(this.name, "utf-8");
+            return data
+        }
+        catch (err) {
+            console.log(err);
+        }
     }
+    async save(object){
+        try {
+            const content = this.read();
+            const data = JSON.parse(content);
+            
+            if( data.length == 0  ){
+                object.id = 0;
+            }
+            else{
+                const lastObj = data[data.length - 1 ];
+                object.id = lastObj.id +1;
+            }
 
-    countMascotas(){
-        return this.mascotas.length
+            data.push(object);
+
+            console.log("El objeto a salvar es: ")
+            console.log(data)
+
+            fs.promises.writeFile(this.name, JSON.stringify(data));
+            return object.id;
+        } catch (error) {
+            console.log("error");
+        }
     }
-
-    addBook( nombre, autor ){
-        this.libros.push( {nombre: nombre, autor: autor} )
+    async getById( number ){
+        try{
+            const content = await fs.promises.readFile(this.name, "utf-8");
+            const data =  JSON.parse(content);
+            const response = data.find( obj => obj.id == number );
+            return (response != undefined) ? JSON.stringify(response) : null
+        }catch(err){
+            console.log("Error en el getById \n" + err );
+        }
     }
-
-    getBookNames(){
-        return this.libros.map( libro => libro.nombre )
+    async getAll(){
+        try{
+            const content = await fs.promises.readFile(this.name, "utf-8");
+            const data = JSON.parse(content);
+            return data
+        }catch(err){
+            console.log("Error en el getAll \n" + err );
+        }
     }
+    async deleteById (number){
+        try{
+            const products = await fs.promises.readFile(this.name, "utf-8");
+            const data = JSON.parse(products);
 
+            const newData = data.filter(obj => obj.id !== number)
+            console.log("El nuevo objeto a ingresar es: ")
+            console.log(newData);
+            fs.writeFile(this.name, JSON.stringify(newData), error =>{
+                if(error){
+                    console.log("Se ha eliminado el objeto con el id: "+number)
+                }else{
+                    console.log("Archivo corregido correctamente!")
+                }
+            })
+        }catch(err){
+            console.log(err);
+        }
+    }
+    async deleteAll(){
+        try{
+            await fs.promises.writeFile( this.name, "" );
+            console.log("Borrado realizado exitosamente")
+        }catch(err){
+            console.log(err);
+        }
+    }
 }
 
-const user = new Usuario( "Carlos", "Simon", [{nombre: "1810", autor: "F.Pigna"},{nombre: "LCDP", autor: "John"}], ["Perro", "Tortugo"] );
-console.log(user);
 
-console.log(`El nombre completo del usuario es: ${user.getFullName()}`)
 
-user.addMascota("Gato")
-console.log(`Las mascotas del usuario son: ${user.mascotas} y su cantidad es: ${user.countMascotas()}`)
-
-user.addBook("Azabache","Autor x")
-console.log(user.libros)
-
-console.log( `Los nombres de los libros son: ${user.getBookNames()}` )
-
-console.log(user)
+const archivo = new Contenedor("productos.txt");
+archivo.save({title: "medias", price: 139, thumbnail: "foto1.jpg" })
+archivo.getById(1).then( response =>{ console.log(response) })
+archivo.getAll().then( response =>{ console.log(response) })
+archivo.deleteById(5);
+archivo.deleteAll();
