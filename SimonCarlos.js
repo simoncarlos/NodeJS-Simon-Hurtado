@@ -1,5 +1,18 @@
-const { clear } = require("console");
 const fs = require("fs");
+const express = require('express');
+
+const app = express();
+const PORT = 3000;
+
+const server = app.listen( PORT, () => {
+    console.log(`Servidor http escuchando en el puerto ${server.address().port}`); 
+});
+
+server.on("error", error => console.log(`Error al establecer la conexcion con el servidor ${error}`));
+
+app.get( '/', (req,res) =>{
+    res.send({ mensaje: 'hola mundo' });
+});
 
 class Contenedor{
     
@@ -94,5 +107,5 @@ archivo.getById(1).then( response =>{ console.log(response) })
 archivo.getAll().then( response =>{ console.log(response) })
 archivo.deleteById(2);
 setTimeout(()=>{
-    archivo.deleteAll();
+    //archivo.deleteAll();
 },2000)
