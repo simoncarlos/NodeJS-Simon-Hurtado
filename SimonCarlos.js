@@ -1,9 +1,8 @@
 const fs = require("fs");
 const express = require('express');
-const { emitWarning } = require("process");
 
 const app = express();
-const PORT = 3000;
+const PORT = 8080;
 
 const server = app.listen( PORT, () => {
     console.log(`Servidor http escuchando en el puerto ${server.address().port}`); 
@@ -114,26 +113,12 @@ class Contenedor{
     }
 }
 
-app.get( '/all', (req,res) =>{
+app.get( '/productos', (req,res) => {
     const archivo = new Contenedor("productos.txt");
-    archivo.getAll()
-    .then( response => { return JSON.parse(response) } )
-    .then( data => { console.log(data) } );
-   // res.send( archivo.getAll() )
+    archivo.getAll().then( response => { res.send( response ) } );
 });
 
-app.get( '/productoRandom', (req,res) =>{
+app.get( '/productoRandom', (req,res) => {
     const archivo = new Contenedor("productos.txt");
-    res.send( archivo.getRandomObject() );
+    archivo.getRandomObject().then( response => { res.send( response ) })
 });
-
-//const archivo = new Contenedor("productos.txt");
-//archivo.save({title: "medias", price: 139, thumbnail: "foto1.jpg" })
-//archivo.getById(1).then( response =>{ console.log(response) })
-//archivo.getAll().then( response =>{ console.log(response) })
-//archivo.deleteById(2);
-//setTimeout(()=>{
-//    //archivo.deleteAll();
-//},2000)
-
-// [{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":1},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":3},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":4},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":5},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":6}]
