@@ -1,5 +1,6 @@
 const fs = require("fs");
 const express = require('express');
+const { emitWarning } = require("process");
 
 const app = express();
 const PORT = 3000;
@@ -9,10 +10,6 @@ const server = app.listen( PORT, () => {
 });
 
 server.on("error", error => console.log(`Error al establecer la conexcion con el servidor ${error}`));
-
-app.get( '/', (req,res) =>{
-    res.send({ mensaje: 'hola mundo' });
-});
 
 class Contenedor{
     
@@ -63,7 +60,9 @@ class Contenedor{
     async getAll(){
         try{
             const content = await fs.promises.readFile(this.name, "utf-8");
+            console.log(content);
             const data = JSON.parse(content);
+            console.log(data);
             return data
         }catch(err){
             console.log( err );
@@ -97,15 +96,44 @@ class Contenedor{
         .then( console.log("Archivo vaciado correctamente") )
         .catch( console.log("Error al eliminar los objetos") )
     }
+    async getRandomObject (){
+        try{
+            const data = await fs.promises.readFile(this.name, "utf-8");
+            const dataParsed = JSON.parse(data);
+            if( dataParsed.length ){
+                const randomPosition =  Math.floor( Math.random() * dataParsed.length  );
+                console.log(dataParsed[randomPosition]);
+                return dataParsed[randomPosition]
+            }else{
+                return null
+            }
+        }
+        catch(err){
+            console.log(err);
+        }
+    }
 }
 
+app.get( '/all', (req,res) =>{
+    const archivo = new Contenedor("productos.txt");
+    archivo.getAll()
+    .then( response => { return JSON.parse(response) } )
+    .then( data => { console.log(data) } );
+   // res.send( archivo.getAll() )
+});
 
+app.get( '/productoRandom', (req,res) =>{
+    const archivo = new Contenedor("productos.txt");
+    res.send( archivo.getRandomObject() );
+});
 
-const archivo = new Contenedor("productos.txt");
-archivo.save({title: "medias", price: 139, thumbnail: "foto1.jpg" })
-archivo.getById(1).then( response =>{ console.log(response) })
-archivo.getAll().then( response =>{ console.log(response) })
-archivo.deleteById(2);
-setTimeout(()=>{
-    //archivo.deleteAll();
-},2000)
+//const archivo = new Contenedor("productos.txt");
+//archivo.save({title: "medias", price: 139, thumbnail: "foto1.jpg" })
+//archivo.getById(1).then( response =>{ console.log(response) })
+//archivo.getAll().then( response =>{ console.log(response) })
+//archivo.deleteById(2);
+//setTimeout(()=>{
+//    //archivo.deleteAll();
+//},2000)
+
+// [{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":1},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":3},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":4},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":5},{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":6}]
