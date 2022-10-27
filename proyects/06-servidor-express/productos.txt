@@ -1,0 +1,1 @@
+[{"title":"medias","price":139,"thumbnail":"foto1.jpg","id":1},{"title":"pantalon","price":2560,"thumbnail":"foto3.jpg","id":3},{"title":"remera","price":2000,"thumbnail":"foto6.jpg","id":4},{"title":"campera","price":3400,"thumbnail":"foto12.jpg","id":5},{"title":"traje","price":5000,"thumbnail":"foto9.jpg","id":6}]
