@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/diegosimonnn/NodeJS-Simon-Hurtado#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "express-handlebars": "^6.0.6"
   }
 }
