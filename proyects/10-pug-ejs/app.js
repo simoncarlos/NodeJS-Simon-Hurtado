@@ -4,28 +4,24 @@ const { Router } = express;
 const products = new Router();
 
 
-app.use( "/productos", products);
-app.use( "/productos", express.static( __dirname + "/public") );
-app.use( ( req, res, next ) => {
-        res.sendStatus(400).send("Page not found");
-});
+app.use( "/productos/form", express.static( __dirname + "/public") );
 app.set("view engine", "ejs");
 
-products.use( express.json() );
-products.use( express.urlencoded( { extended: true } ) );
+app.use( express.json() );
+app.use( express.urlencoded( { extended: true } ) );
 
 const listProducts = [];
 
-products.get("/", (req, res) => {
+app.get("/productos", (req, res) => {
     req.query["listProducts"] = listProducts;
     res.render("data", req.query);
 });
 
-products.post("/form", (req, res) => {
+app.post("/productos/form", (req, res) => {
+    console.log( req.body );
     listProducts.push( req.body );
-    console.log("La nueva lista de productos es:");
-    console.log(listProducts);
-    res.redirect("../");
+    res.redirect(".."); // ..
+    //res.end()
 });
 
 const PORT = process.env.PORT || 8080;

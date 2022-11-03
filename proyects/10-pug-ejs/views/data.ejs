@@ -6,10 +6,26 @@
         <title>Get Data</title>
     </head>
     <body>
-        <h1>Hola</h1>
-        <% listProducts.forEach( product => { %>
-        <div><%= product %></div>
-        <% }); %>
-
+        <h1>Lista de productos</h1>
+        <%  %>
+        <% if( listProducts.length ){ %>
+        <table>
+            <tr>
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Foto </th>
+            </tr>
+            <% listProducts.forEach( product => { %>
+                <tr>
+                    <td><%= product.nombre %></td>
+                    <td><%= product.precio %></td>
+                    <td><%= product.thumbnail %></td>
+                </tr>
+            <% }); %>
+        </ul>
+        <% } else{ %>
+            <h2>No se encontraron productos</h2>
+        <% } %>
+        <a href="./../productos/form">Ir al formulario</a>
     </body>
 </html>
