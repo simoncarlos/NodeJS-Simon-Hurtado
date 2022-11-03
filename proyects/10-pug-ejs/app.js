@@ -4,7 +4,7 @@ const { Router } = express;
 const products = new Router();
 
 
-app.use( "/productos/form", express.static( __dirname + "/public") );
+app.use( "/productos/form", express.static( __dirname) );
 app.set("view engine", "ejs");
 
 app.use( express.json() );
