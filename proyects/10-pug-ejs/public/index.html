@@ -5,23 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ejs POST</title>
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body>
-    <form action="./" method="post">
-        <div>
-            <label for="nombre">Nombre: </label>
-            <input type="text" name="nombre" id="nombre">
-        </div>
-        <div>
-            <label for="precio">Precio: </label>
-            <input type="number" name="precio" id="precio">
-        </div>
-        <div>
-            <label for="thumbnail">Foto URL: </label>
-            <input type="text" name="thumbnail" id="thumbnail">
-        </div>
-        <button type="submit">Enviar</button>
-    </form>
+    <section class="formulario">
+        <form action="./" method="post">
+            <div>
+                <label for="nombre">Nombre: </label>
+                <input type="text" name="nombre" id="nombre">
+            </div>
+            <div>
+                <label for="precio">Precio: </label>
+                <input type="number" name="precio" id="precio">
+            </div>
+            <div>
+                <label for="thumbnail">Foto URL: </label>
+                <input type="text" name="thumbnail" id="thumbnail">
+            </div>
+            <button type="submit">Enviar</button>
+        </form>
+    </section>
     <a href="../">Ir al listado</a>
 </body>
 </html>

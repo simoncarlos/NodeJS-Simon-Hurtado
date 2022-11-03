@@ -18,10 +18,8 @@ app.get("/productos", (req, res) => {
 });
 
 app.post("/productos/form", (req, res) => {
-    console.log( req.body );
     listProducts.push( req.body );
-    res.redirect(".."); // ..
-    //res.end()
+    res.redirect("..");
 });
 
 const PORT = process.env.PORT || 8080;

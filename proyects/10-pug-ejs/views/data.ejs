@@ -4,28 +4,77 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Get Data</title>
+        <link rel="stylesheet" href="./style.css">
     </head>
-    <body>
-        <h1>Lista de productos</h1>
+    <style>
+        .cuerpo{
+            background-color: grey;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .cuerpo__titulo{
+            color: blue;
+            font-size: 4rem;
+        }
+        .cuerpo__tabla{
+            border: 1px solid white;
+        }
+        .cuerpo__encabezado th{
+            padding: 25px;
+            color: white;
+            font-size: 2rem;
+            font-weight: 800;
+        }
+        .tabla__cuerpo td{
+            width: 90px;
+            padding: 15px;
+            color: rgba(255, 255, 255, 0.705);
+            font-size: 1rem;
+            font-weight: 400;
+            border: 1px solid white;
+        } 
+        .cuerpo__subtitulo{
+            color: brown;
+            font-size: 3rem;
+        }
+        .cuerpo__boton{
+            padding: 20px 10px;
+            background-color: blue;
+            color: white;
+        }
+        .cuerpo__respuesta{
+            margin: 50px 0;
+        }
+    </style>
+    <body class="cuerpo">
+        <h1 class="cuerpo__titulo">Lista de productos</h1>
         <%  %>
-        <% if( listProducts.length ){ %>
-        <table>
-            <tr>
-                <th> Nombre </th>
-                <th> Precio </th>
-                <th> Foto </th>
-            </tr>
-            <% listProducts.forEach( product => { %>
-                <tr>
-                    <td><%= product.nombre %></td>
-                    <td><%= product.precio %></td>
-                    <td><%= product.thumbnail %></td>
+        <section class="cuerpo__respuesta">
+            <% if( listProducts.length ){ %>
+            <table class="cuerpo__tabla">
+                <tr class="tabla__encabezado">
+                    <th> Nombre </th>
+                    <th> Precio </th>
+                    <th> Foto </th>
                 </tr>
-            <% }); %>
-        </ul>
-        <% } else{ %>
-            <h2>No se encontraron productos</h2>
-        <% } %>
-        <a href="./../productos/form">Ir al formulario</a>
+                <% listProducts.forEach( product => { %>
+                    <tr class="tabla__cuerpo">
+                        <td><%= product.nombre %></td>
+                        <td><%= product.precio %></td>
+                        <td>
+                            <img src="<%-product.thumbnail%>" alt="<%-product.title%>" width="40px" height="40px">
+                        </td>
+                    </tr>
+                <% }); %>
+            </table>
+            <% } else{ %>
+                <h2 class="cuerpo__subtitulo">No se encontraron productos</h2>
+            <% } %>
+        </section>
+        <section>
+            <a href="./../productos/form" class="cuerpo__boton">Ir al formulario</a>
+        </section>
     </body>
 </html>
