@@ -1,0 +1,10 @@
+[
+    {
+        "mensaje": "Mensaje de prueba",
+        "autor": "Diego"
+    },
+    {
+        "mensaje": "Mensaje de prueba 2",
+        "autor": "Carlos"
+    }
+]
