@@ -1,0 +1,28 @@
+<h1>{{titulo}}</h1>
+<p>{{mensaje}}</p>
+<b>{{autor}}</b>
+<hr>
+<i><b>Version: {{version}}</b></i>
+
+<section class="cuerpo__respuesta">
+    {{#if products.length}}
+        <table class="cuerpo__tabla">
+            <tr class="tabla__encabezado">
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Foto </th>
+            </tr>
+            {{#each products}}
+                <tr class="tabla__cuerpo">
+                    <td>{{this.nombre}}</td>
+                    <td>{{this.precio}}</td>
+                    <td>
+                        <img src="{{this.thumbnail}}" alt="{{this.nombre}}" width="40px" height="40px">
+                    </td>
+                </tr>
+            {{/each}}
+        </table>
+    {{else}}
+        <h2 class="cuerpo__subtitulo">No se encontraron productos</h2>
+    {{/if}}
+</section>
