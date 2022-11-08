@@ -1,9 +1,3 @@
-<h1>{{titulo}}</h1>
-<p>{{mensaje}}</p>
-<b>{{autor}}</b>
-<hr>
-<i><b>Version: {{version}}</b></i>
-
 <section class="cuerpo__respuesta">
     {{#if products.length}}
         <table class="cuerpo__tabla">
@@ -25,4 +19,25 @@
     {{else}}
         <h2 class="cuerpo__subtitulo">No se encontraron productos</h2>
     {{/if}}
+</section>
+
+<section class="cuerpo__chat">
+    <input type="text" name="mail" id="mail" placeholder="diego@gmail.com" required>
+    <ul>
+        {{#if chat.length}}
+            {{#each chat}}
+                <li>
+                    <p>
+                        <span>{{this.email}}</span>
+                        <span>{{this.fecha}}</span>
+                        <span>{{this.mensaje}}</span>
+                    </p>
+                </li>
+            {{/each}}
+        {{else}}
+            <li>No hay mensajes en el chat</li>
+        {{/if}}
+    </ul>
+    <input type="text" name="message" id="message" placeholder="Ingrese un mensaje.." required>
+    <button id="submitMessage">Enviar mensaje</button>
 </section>
