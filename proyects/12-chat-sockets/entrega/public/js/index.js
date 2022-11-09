@@ -21,6 +21,22 @@ buttonSubmitProduct.addEventListener("click", e => {
 });
 
 socket.on("newProduct", product => {
+
+    if( document.querySelector("#cuerpo__subtitulo") !== null ){
+        
+        const tableHead = document.querySelector(".cuerpo__tabla");
+        tableHead.innerHTML += 
+        `
+        <tr class="tabla__encabezado">
+            <th> Nombre </th>
+            <th> Precio </th>
+            <th> Foto </th>
+        </tr>
+        `;
+        document.getElementById("cuerpo__subtitulo").outerHTML = "";
+
+    }
+
     const table = document.querySelector(".cuerpo__tabla");
     table.innerHTML += 
     `<tr>
@@ -30,6 +46,7 @@ socket.on("newProduct", product => {
             <img src=${product.thumbnail} alt=${product.nombre} width="40px" height="40px">
         </td>
     </tr>`;
+
 });
 
 const buttonSubmitChat = document.getElementById("submitMessage");
@@ -38,8 +55,12 @@ buttonSubmitChat.addEventListener("click", e => {
 
     e.preventDefault();
 
+    const fecha = new Date();
+    const today = fecha.toLocaleDateString();
+    const hour = fecha.toLocaleTimeString('en-US');
+
     const mail = document.getElementById("mail").value;
-    const date = "today"
+    const date = `[${today} ${hour}]`
     const message = document.getElementById("message").value;
     
     const newMessage = { email: mail, fecha: date, mensaje: message };
@@ -49,6 +70,11 @@ buttonSubmitChat.addEventListener("click", e => {
 });
 
 socket.on("newMessage", message => {
+
+    if( document.getElementById("chat__message") !== null ){
+        document.getElementById("chat__message").outerHTML = "";
+    }
+
     const chat = document.querySelector(".cuerpo__chat ul");
     chat.innerHTML += 
     `<li>

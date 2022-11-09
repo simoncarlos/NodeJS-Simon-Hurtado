@@ -36,10 +36,6 @@ app.get("/productos", async (req, res) =>{
 
 socketConfig( io, productsContainer, chatContainer );
 
-//const PORT = process.env.PORT || 8080;
-//
-//app.listen(PORT, () => console.log(`http://localhost:${PORT}`) );
-
 const server = httpServer.listen(8080, () => {
     console.log(`servidor conectado en puerto ${server.address().port }`);
 });

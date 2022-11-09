@@ -1,6 +1,6 @@
 <section class="cuerpo__respuesta">
-    {{#if products.length}}
-        <table class="cuerpo__tabla">
+    <table class="cuerpo__tabla">
+        {{#if products.length}}
             <tr class="tabla__encabezado">
                 <th> Nombre </th>
                 <th> Precio </th>
@@ -15,9 +15,11 @@
                     </td>
                 </tr>
             {{/each}}
-        </table>
+        {{/if}}
+    </table>
+    {{#if products.length}}
     {{else}}
-        <h2 class="cuerpo__subtitulo">No se encontraron productos</h2>
+        <h2 id="cuerpo__subtitulo">No se encontraron productos</h2>
     {{/if}}
 </section>
 
@@ -34,8 +36,10 @@
                     </p>
                 </li>
             {{/each}}
+        {{/if}}
+        {{#if chat.length}}
         {{else}}
-            <li>No hay mensajes en el chat</li>
+            <li id="chat__message">No hay mensajes en el chat</li>
         {{/if}}
     </ul>
     <input type="text" name="message" id="message" placeholder="Ingrese un mensaje.." required>

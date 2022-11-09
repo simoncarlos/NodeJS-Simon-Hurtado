@@ -1,1 +1,1 @@
-[{"nombre":"dsds","precio":"2323","thumbnail":"3223"}]
+[{"nombre":"Mochila","precio":"5200","thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/bag-pack-container-school-256.png"},{"nombre":"Escuadra y regla","precio":"630","thumbnail":"https://cdn3.iconfinder.com/data/icons/education-209/64/ruler-triangle-stationary-school-512.png"}]
