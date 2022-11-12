@@ -9,7 +9,7 @@ class cartClass{
     async getData(){
         try{
             const content = await fs.promises.readFile(`../files/${this.fileName}`, 'utf-8')
-            return await JSON.parse(content)  ;//await JSON.parse(content);
+            return await JSON.parse(content);
         }catch(err){
             console.log(err);
         }
@@ -23,66 +23,6 @@ class cartClass{
             console.log(err);
         }
     }
-
-    async getDataById( idParams ){
-        try{
-            const content = await fs.promises.readFile(`../files/${this.fileName}`, 'utf-8');
-            const data = await JSON.parse(content);
-            const obj = data.find( object => object.id === parseInt(idParams) ) || "No se encontraron datos"
-            return obj
-        }catch(err){
-            console.log(err)
-        }
-    } //
-
-    async saveObject( obj ){
-        try{
-            const data = await this.getData();
-            let newId = data.length ? data[ data.length - 1 ].id + 1  : 1
-            obj.id = newId;
-            data.push( obj );
-            const content = JSON.stringify( data );
-            await fs.promises.writeFile(`../files/${this.fileName}`, content);
-            return 200
-        }catch(err){
-            console.log(err);
-        }
-    } //
-    
-    async updateObject( idParams, bodyRequest ){
-        try{
-            const data = await this.getData();
-            bodyRequest.id = parseInt(idParams);
-            const indexUpdate = data.findIndex( object => object.id === parseInt(idParams) );
-            if( indexUpdate != -1 ){
-                data[ indexUpdate ] = bodyRequest;
-                const content = JSON.stringify( data );
-                await fs.promises.writeFile(`../files/${this.fileName}`, content);
-                return 200
-            }else{
-                return 400
-            }
-        }catch(err){
-            console.log(err)
-        }
-    } //
-
-    async deleteObject( idParams ){
-        try{
-            const data = await this.getData();
-            const indexDelete = await data.findIndex( object => object.id === parseInt(idParams) );
-            if( indexDelete != -1 ){
-                data.splice( indexDelete, 1);
-                const content = JSON.stringify( data );
-                await fs.promises.writeFile(`../files/${this.fileName}`, content);
-                return 200
-            }else{
-                return 400
-            }
-        }catch(err){
-            console.log(err)
-        }
-    } //
 
     async createCart(){
         try{
@@ -123,7 +63,31 @@ class cartClass{
     }
 
     async getProductsList ( idCart, products ){
-        
+
+        const cartList = await this.getData();
+        const productsListId = cartList.find( cart => cart.id === parseInt(idCart) );
+
+        if( productsListId != undefined ){
+            const productsList = products.filter( product => productsListId.productos.includes( product.id ) );
+            return productsList;
+        }else{
+            return "No se encontraron productos";
+        }
+
+    }
+
+    async deleteProductCart ( idCart, idProduct ){
+        const cartList = await this.getData();
+        const indexDeletedCart = cartList.findIndex( cart => cart.id === parseInt(idCart) );
+        if( indexDeletedCart != -1 ){
+            const indexDeletedProduct = cartList[ indexDeletedCart ].productos.findIndex( producto => producto === parseInt(idProduct) );
+            if( indexDeletedProduct != -1 ){
+                cartList[ indexDeletedCart ].productos.splice( indexDeletedProduct, 1 )
+                await this.postData( cartList );
+                return 200
+            }
+        }
+        return 403
     }
 
 }

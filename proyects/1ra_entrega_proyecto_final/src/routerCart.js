@@ -28,8 +28,13 @@ cart.post( "/:id_cart/products", async (req, res) => {
 
 cart.get( "/:id_cart/products", async (req, res) => {
     const products = await productContainer.getData();
-    const productsList = await cartContainer.getProductsList( req.params.id_cart, products );
-    res.send( productsList );
+    const productsCart = await cartContainer.getProductsList( req.params.id_cart, products );
+    res.send( productsCart );
+});
+
+cart.delete( "/:id_cart/products/:id_prod", async (req, res) => {
+    const status = await cartContainer.deleteProductCart( req.params.id_cart, req.params.id_prod )
+    res.sendStatus( status );
 });
 
 module.exports = {
