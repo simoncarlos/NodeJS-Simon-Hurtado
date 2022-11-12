@@ -1,1 +1,1 @@
-[{ "nombre" : "Diego", "id": "1" }]
+[{"id":1,"name":"t-shirt","description":"beautiful t-shirt","image":"foto.jpg","price":1000},{"id":2,"name":"socks","description":"beautiful socks","image":"foto.jpg","price":500},{"id":3,"name":"hat","description":"beautiful hat","image":"foto.jpg","price":200}]

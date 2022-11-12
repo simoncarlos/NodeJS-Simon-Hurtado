@@ -4,7 +4,7 @@ function checkAdmin(req, res, next){
     if( isAdmin ){
         next()
     }else{
-        res.sendStatus(403)
+        res.send( { error: -1, descripcion: `ruta ${req.url}, metodo ${req.method} no autorizado` } );
     }
 }
 

@@ -3,11 +3,10 @@ const app = express();
 
 const { products } = require("./routerProducts");
 const { cart } = require("./routerCart");
-const Container = require('./container');
-let { logout, login } = require("./admin")
+let { logout, login } = require("./admin") 
 
-app.use( "/api/productos", products );
-app.use( "/api/carrito", cart );
+app.use( "/api/products", products );
+app.use( "/api/shoppingcart", cart );
 
 app.get("/login", (req, res) => {
     login();
@@ -20,7 +19,7 @@ app.get("/logout", (req, res) => {
 });
 
 app.all("*", (req, res) => {
-    res.status(404).json("Ruta no encontrada");
+    res.send( { error: -2, descripcion: `ruta ${req.url}, metodo ${req.method} no implementada` } )
 });
 
 module.exports = {
