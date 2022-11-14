@@ -39,26 +39,25 @@ class cartClass{
 
     async deleteCart( idCartDeleted ){
         const cartList = await this.getData();
-        console.log( idCartDeleted ); 
         const indexCartDeleted = cartList.findIndex( cart => cart.id === parseInt(idCartDeleted) );
         if( indexCartDeleted != -1 ){
             cartList.splice( indexCartDeleted, 1 );
             await this.postData(cartList);
             return 200
         }else{
-            return 400
+            return 404
         }
     }
     
-    async addProductCart ( idCart, idProduct, validProduct ){
+    async addProductCart ( idCart, idProduct, data ){
         const cartList = await this.getData();
         const indexCart = cartList.findIndex( cart => cart.id === parseInt(idCart) );
-        if( indexCart != -1 && ( typeof validProduct != "string" ) ){
+        if( indexCart != -1 && data.status === 200 ){
             cartList[ indexCart ].productos.push( idProduct );
             await this.postData(cartList);
             return 200;
         }else{
-            return 400
+            return 404
         }
     }
 
@@ -66,14 +65,14 @@ class cartClass{
 
         const cartList = await this.getData();
         const productsListId = cartList.find( cart => cart.id === parseInt(idCart) );
-
+        const response = {};
         if( productsListId != undefined ){
-            const productsList = products.filter( product => productsListId.productos.includes( product.id ) );
-            return productsList;
+            response.data = products.filter( product => productsListId.productos.includes( product.id ) );
+            response.status = 200;
         }else{
-            return "No se encontraron productos";
+            response.status = 404
         }
-
+        return response
     }
 
     async deleteProductCart ( idCart, idProduct ){
@@ -87,7 +86,7 @@ class cartClass{
                 return 200
             }
         }
-        return 403
+        return 404
     }
 
 }

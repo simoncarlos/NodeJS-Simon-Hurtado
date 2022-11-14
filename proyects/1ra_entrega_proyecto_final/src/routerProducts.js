@@ -9,14 +9,22 @@ const productsContainer = new productClass("products.txt");
 products.use( express.json() );
 products.use( express.urlencoded( { extended: true } ) ); 
 
+function responseSend( res, product ){
+    if( product.status === 200 ){
+        res.send( product.data );
+    }else{
+        res.sendStatus( product.status );
+    }
+}
+
 products.get( "/", async (req, res) => { 
     const productsList = await productsContainer.getData();
     res.send( productsList );
 });
 
 products.get( "/:id", async (req, res) => { 
-    const productItem = await productsContainer.getDataById(req.params.id);
-    res.send( productItem );
+    const data = await productsContainer.getDataById(req.params.id);
+    responseSend( res, data );
 });
 
 products.post( "/", checkAdmin, async (req, res) => { 

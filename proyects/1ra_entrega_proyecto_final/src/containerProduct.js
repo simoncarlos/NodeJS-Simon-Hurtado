@@ -18,8 +18,13 @@ class productClass{
     async getDataById( idParams ){
         try{
             const data = await this.getData();
-            const obj = data.find( object => object.id === parseInt(idParams) ) || "No se encontraron productos con ese id"
-            return obj
+            const obj = data.find( object => object.id === parseInt(idParams) )
+            const status = typeof obj === "object" ? 200 : 404; 
+            const response = {
+                status: status,
+                data: obj
+            }
+            return response
         }catch(err){
             console.log(err)
         }
@@ -50,7 +55,7 @@ class productClass{
                 await fs.promises.writeFile(`../files/${this.fileName}`, content);
                 return 200
             }else{
-                return 400
+                return 404
             }
         }catch(err){
             console.log(err)
@@ -67,7 +72,7 @@ class productClass{
                 await fs.promises.writeFile(`../files/${this.fileName}`, content);
                 return 200
             }else{
-                return 400
+                return 404
             }
         }catch(err){
             console.log(err)

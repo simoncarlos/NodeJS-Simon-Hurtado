@@ -1,4 +1,4 @@
-const { Router } = require("express");
+const { Router, response } = require("express");
 const express = require("express");
 
 const cart = new Router();
@@ -9,6 +9,14 @@ const productContainer = new productClass("products.txt")
 
 cart.use( express.json() );
 cart.use( express.urlencoded( { extended: true } ) ); 
+
+function responseSend( res, cart ){
+    if( cart.status === 200 ){
+        res.send( cart.data );
+    }else{
+        res.sendStatus( cart.status );
+    }
+}
 
 cart.post( "/", async (req, res) => { 
     const newCartId = await cartContainer.createCart();
@@ -21,15 +29,15 @@ cart.delete( "/:id_carrito", async (req, res) => {
 });
 
 cart.post( "/:id_cart/products", async (req, res) => {
-    const validProduct = await productContainer.getDataById( req.body.id_product );
-    const status = await cartContainer.addProductCart( req.params.id_cart, req.body.id_product, validProduct );
+    const data = await productContainer.getDataById( req.body.id_product );
+    const status = await cartContainer.addProductCart( req.params.id_cart, req.body.id_product, data );
     res.sendStatus( status );
 });
 
 cart.get( "/:id_cart/products", async (req, res) => {
     const products = await productContainer.getData();
     const productsCart = await cartContainer.getProductsList( req.params.id_cart, products );
-    res.send( productsCart );
+    responseSend(res, productsCart);
 });
 
 cart.delete( "/:id_cart/products/:id_prod", async (req, res) => {
