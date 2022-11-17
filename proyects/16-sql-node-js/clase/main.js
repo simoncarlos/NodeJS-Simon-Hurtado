@@ -22,20 +22,26 @@ if( !existeTablaPersonas ){
     })
 }
 
-await knexClient.insert( { nombre: "Diego", edad: 24} ).into("alumnos");
+// Write
+
+await knexClient.insert( { nombre: "Steffi", edad: 18} ).into("alumnos");
+
+await knexClient.insert( [
+    { nombre: "Ramiro", edad: 21},
+    { nombre: "Damian", edad: 20}
+] ).into("alumnos");
+
+// Read
+
+const alumnos = await knexClient.select().from("alumnos")//.whereBetween( "edad", [31, 37] )
+console.log(alumnos)
+
+// Update
+
+await knexClient.from( "alumnos" ).where( { nombre: "Damian" } ).update( { edad: 45 } ); //.whereBetween( "edad", [31, 37] )
+
+// Delete
+
+await knexClient.delete().from("alumnos").where( { nombre: "Damian" } )
 
 await knexClient.destroy();
-
-//const DRIVER = 'mysql'
-//const USERNAME = 'root'
-//const PASSWORD = 'mysqlpassword'
-//const HOST = 'localhost'
-//const PORT = '3306'
-//const DB_NAME = 'coderhouse'
-//
-//const cnxStr = `${DRIVER}://${USERNAME}:${PASSWORD}@${HOST}:${PORT}/${DB_NAME}`
-//
-//export const MYSQL_KNEX_CONFIG = {
-//    client: 'mysql2',
-//    connection: cnxStr
-//}
