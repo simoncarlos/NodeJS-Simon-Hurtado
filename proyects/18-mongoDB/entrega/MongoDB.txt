@@ -1,0 +1,40 @@
+1)
+
+use ecommerce
+
+db.createCollection("mensajes")
+db.createCollection("productos")
+
+db.mensajes.insertMany( [ { email: "diego@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "pedro@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "juan@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "fabio@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "joaquin@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "steffi@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "lucas@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
+{ email: "timo@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" },
+{ email: "daniel@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" },
+{ email: "fausto@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" } ] )
+
+db.productos.insertMany( [ { nombre: "pantalon", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "remera", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "gorro", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "medias", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "lentes", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "zapatillas", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "bermudas", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "cinturon", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "camisa", precio: 750, thumbnail: "foto.jpg" },
+{ nombre: "ambo", precio: 750, thumbnail: "foto.jpg" } ] )
+
+2)
+
+3)
+
+db.mensajes.find()
+db.productos.find()
+
+4) 
+
+db.mensajes.countDocuments()
+db.productos.countDocuments()
