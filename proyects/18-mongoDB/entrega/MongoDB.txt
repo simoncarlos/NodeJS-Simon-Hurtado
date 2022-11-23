@@ -1,33 +1,31 @@
-1)
+1 y 2)
 
 use ecommerce
 
 db.createCollection("mensajes")
 db.createCollection("productos")
 
-db.mensajes.insertMany( [ { email: "diego@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "pedro@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "juan@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "fabio@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "joaquin@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "steffi@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "lucas@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" }, 
-{ email: "timo@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" },
-{ email: "daniel@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" },
-{ email: "fausto@gmail.com", fecha: "[17/11/2022 1:48:21 PM]", mensaje: "Hola" } ] )
+db.mensajes.insertMany( [ { "email": "diego@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "pedro@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "juan@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "fabio@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "joaquin@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "steffi@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "lucas@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" }, 
+{ "email": "timo@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" },
+{ "email": "daniel@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" },
+{ "email": "fausto@gmail.com", "fecha": "[17/11/2022 1:48:21 PM]", "mensaje": "Hola" } ] )
 
-db.productos.insertMany( [ { nombre: "pantalon", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "remera", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "gorro", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "medias", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "lentes", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "zapatillas", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "bermudas", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "cinturon", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "camisa", precio: 750, thumbnail: "foto.jpg" },
-{ nombre: "ambo", precio: 750, thumbnail: "foto.jpg" } ] )
-
-2)
+db.productos.insertMany( [ { "nombre": "pantalon", "precio": 4990, "thumbnail": "foto.jpg" },
+{ "nombre": "remera", "precio": 120, "thumbnail": "foto.jpg" },
+{ "nombre": "gorro", "precio": 580, "thumbnail": "foto.jpg" },
+{ "nombre": "medias", "precio": 900, "thumbnail": "foto.jpg" },
+{ "nombre": "lentes", "precio": 1280, "thumbnail": "foto.jpg" },
+{ "nombre": "zapatillas", "precio": 1700, "thumbnail": "foto.jpg" },
+{ "nombre": "bermudas", "precio": 2300, "thumbnail": "foto.jpg" },
+{ "nombre": "cinturon", "precio": 2860, "thumbnail": "foto.jpg" },
+{ "nombre": "camisa", "precio": 3350, "thumbnail": "foto.jpg" },
+{ "nombre": "ambo", "precio": 4320, "thumbnail": "foto.jpg" } ] )
 
 3)
 
@@ -36,5 +34,45 @@ db.productos.find()
 
 4) 
 
-db.mensajes.countDocuments()
-db.productos.countDocuments()
+db.mensajes.estimatedDocumentCount()
+db.productos.estimatedDocumentCount()
+
+5a)
+
+db.productos.insert( { "nombre": "prueba", "precio": 20, "thumbnail": "foto.jpg" } )
+
+5b)
+
+db.productos.find( { "nombre": "camisa" } )
+
+5b i)
+
+db.productos.find( { "precio": { $lt: 1000 } } )
+
+5b ii)
+
+db.productos.find( { $and: [ { "precio": { $gt: 1000 } }, { "precio": { $lt: 3000 } } ] } )
+
+5b iii)
+
+db.productos.find( { "precio": { $gt: 3000 } } )
+
+5b iv)
+
+db.productos.find().sort( { "precio": 1 } ).limit(1).skip(2)
+
+5c)
+
+db.productos.updateMany( {}, { $set: { "stock": 100 } }, { upsert: false } )
+
+5d)
+
+db.productos.updateMany( { "precio": { $gt: 4000 } }, {$set: { "stock": 0 } }, { upsert: true } )
+
+5e)
+
+db.productos.deleteMany( { "precio": { $lt: 1000 } } )
+
+6)
+
+db.createUser( { "user": "pepe", "pwd": "asd456", "roles": [ { "role": "read", "db": "ecommerce"} ] } )

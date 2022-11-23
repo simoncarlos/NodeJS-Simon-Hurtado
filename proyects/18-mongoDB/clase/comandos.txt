@@ -7,7 +7,7 @@ db.[nombre_coleccion].drop() -> borra coleccion
 use database_name -> seleccion de base de datos para interactuar
 
 db.personas.find( {nombre: "pepe" } ) -> devuelve array con objetos
-db.personas.findOne( { nombre: "p"epe" } ) -> devuelve el primer objeto
+db.personas.findOne( { nombre: "pepe" } ) -> devuelve el primer objeto
 
 db.personas.countDocuments() -> devuelve cantidad de documentos
 db.personas.countDocuments( { nombre: "Diego" } )
