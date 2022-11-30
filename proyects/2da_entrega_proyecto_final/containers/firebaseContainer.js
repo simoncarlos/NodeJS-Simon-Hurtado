@@ -72,6 +72,20 @@ class firebaseContainer{
         }
     }
 
+    async deleteObject( idParam ){
+        try{
+            const response = await this.getObjectById( idParam );
+            if( response.status === 200 ){
+                await this.collection.doc( `${idParam}` ).delete();
+                return 200
+            }else{
+                return 404
+            }
+        }catch(err){
+            console.log(  `Error al eliminar el objecto con id: ${idParam}. Error: ${err}`  )
+        }
+    }
+
 }
 
 export default firebaseContainer;

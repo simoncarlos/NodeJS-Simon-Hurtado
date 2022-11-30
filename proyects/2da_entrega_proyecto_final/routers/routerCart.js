@@ -7,14 +7,6 @@ const cart = new Router();
 cart.use( express.json() );
 cart.use( express.urlencoded( { extended: true } ) );
 
-function responseSend( res, cart ){
-    if( cart.status === 200 ){
-        res.send( cart.data );
-    }else{
-        res.sendStatus( cart.status );
-    }
-}
-
 async function getNewId(){
     const data = await cartDao.getObjects();
     if( data.length ){
@@ -23,11 +15,6 @@ async function getNewId(){
         return 1
     }
 }
-
-//cart.get( "/", async (req, res) => { // de prueba, eliminar luego
-//    const cart = await cartDao.getObjects();
-//    res.json( cart );
-//});
 
 cart.post( "/", async (req, res) => { 
     const newId = await getNewId();
