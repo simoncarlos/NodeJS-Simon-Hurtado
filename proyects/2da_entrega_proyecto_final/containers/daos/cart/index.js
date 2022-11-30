@@ -4,15 +4,22 @@ let cartDao
 
 // process.env.PERS
 
-switch ( "json" ) {
+switch ( "firebase" ) {
     case 'json':
         const { default: cartDaoFile } = await import('./cartDaoFile.js');
         cartDao = new cartDaoFile(config.fileSystem.path)
         break
+    case 'firebase':
+        const { default: cartDaoFirebase } = await import('./cartDaoFirebase.js')
+        cartDao = new cartDaoFirebase()
+        break
+    case 'mongodb':
+        const { default: cartDaoMongoDb } = await import('./cartDaoMongoDb.js')
+        cartDao = new cartDaoMongoDb()
+        break
     default:
-        console.log("entro al default")
-        //const { default: PersonasDaoMem } = await import('./PersonasDaoMem.js')
-        //personasDao = new PersonasDaoMem()
+        const { default: cartDaoMemory } = await import('./cartDaoMemory.js')
+        cartDao = new cartDaoMemory()
         break
 }
 

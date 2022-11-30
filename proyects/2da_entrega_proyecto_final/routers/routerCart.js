@@ -24,10 +24,6 @@ async function getNewId(){
     }
 }
 
-function getPositionCart(){
-
-}
-
 //cart.get( "/", async (req, res) => { // de prueba, eliminar luego
 //    const cart = await cartDao.getObjects();
 //    res.json( cart );

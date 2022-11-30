@@ -35,7 +35,7 @@ products.get( "/:id", async (req, res) => {
 });
 
 products.post( "/", checkAdmin, async (req, res) => { 
-    req.body.id = getNewId();
+    req.body.id = await getNewId();
     const status = await productDao.saveObject( req.body );
     res.sendStatus( status );
 });
