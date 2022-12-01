@@ -1,6 +1,6 @@
-import mongoDbContainer from "../../mongoContainer.js";
+import MongoDbContainer from "../../mongoContainer.js";
 
-class productDaoMongoDb extends mongoDbContainer {
+class ProductDaoMongoDb extends MongoDbContainer {
 
     constructor() {
         super('productos', {
@@ -13,4 +13,4 @@ class productDaoMongoDb extends mongoDbContainer {
     }
 }
 
-export default productDaoMongoDb;
+export default ProductDaoMongoDb;

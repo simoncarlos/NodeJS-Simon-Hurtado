@@ -1,6 +1,6 @@
-import fileContainer from "../../fileContainer.js";
+import FileContainer from "../../fileContainer.js";
 
-class productDaoFile extends fileContainer{
+class ProductDaoFile extends FileContainer{
 
     constructor( routeDir ) {
         super(`${routeDir}/product.json`)
@@ -8,4 +8,4 @@ class productDaoFile extends fileContainer{
 
 }
 
-export default productDaoFile;
+export default ProductDaoFile;

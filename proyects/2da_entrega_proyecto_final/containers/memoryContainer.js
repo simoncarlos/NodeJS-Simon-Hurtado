@@ -1,5 +1,5 @@
 
-class memoryContainer{
+class MemoryContainer{
     
     constructor(){
         this.data = [];
@@ -67,4 +67,4 @@ class memoryContainer{
 
 }
 
-export default memoryContainer;
+export default MemoryContainer;

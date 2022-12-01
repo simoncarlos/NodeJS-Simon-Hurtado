@@ -1,7 +1,7 @@
 import mongoose, { Schema, model }  from "mongoose";
 
 
-class mongoDbContainer{
+class MongoDbContainer{
 
     constructor( nameCollection, schema) {
         this.collection = mongoose.model( nameCollection, new Schema( schema ) )
@@ -69,4 +69,4 @@ class mongoDbContainer{
 
 };
 
-export default mongoDbContainer;
+export default MongoDbContainer;

@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 
-class fileContainer{
+class FileContainer{
     
     constructor( fileName ){
         this.fileName = fileName
@@ -79,4 +79,4 @@ class fileContainer{
 
 }
 
-export default fileContainer;
+export default FileContainer;

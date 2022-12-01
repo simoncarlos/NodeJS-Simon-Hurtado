@@ -1,25 +1,23 @@
-import config from '../../../src/config.js'
+import config, { TYPE_PERS } from '../../../src/config.js'
 
 let cartDao
 
-// process.env.PERS
-
-switch ( "firebase" ) {
+switch ( TYPE_PERS ) {
     case 'json':
-        const { default: cartDaoFile } = await import('./cartDaoFile.js');
-        cartDao = new cartDaoFile(config.fileSystem.path)
+        const { default: CartDaoFile } = await import('./cartDaoFile.js');
+        cartDao = new CartDaoFile(config.fileSystem.path)
         break
     case 'firebase':
-        const { default: cartDaoFirebase } = await import('./cartDaoFirebase.js')
-        cartDao = new cartDaoFirebase()
+        const { default: CartDaoFirebase } = await import('./cartDaoFirebase.js')
+        cartDao = new CartDaoFirebase()
         break
     case 'mongodb':
-        const { default: cartDaoMongoDb } = await import('./cartDaoMongoDb.js')
-        cartDao = new cartDaoMongoDb()
+        const { default: CartDaoMongoDb } = await import('./cartDaoMongoDb.js')
+        cartDao = new CartDaoMongoDb()
         break
     default:
-        const { default: cartDaoMemory } = await import('./cartDaoMemory.js')
-        cartDao = new cartDaoMemory()
+        const { default: CartDaoMemory } = await import('./cartDaoMemory.js')
+        cartDao = new CartDaoMemory()
         break
 }
 

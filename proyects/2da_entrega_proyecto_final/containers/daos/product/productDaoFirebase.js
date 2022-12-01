@@ -1,6 +1,6 @@
-import firebaseContainer from "../../firebaseContainer.js"
+import FirebaseContainer from "../../firebaseContainer.js"
 
-class productDaoFirebase extends firebaseContainer {
+class ProductDaoFirebase extends FirebaseContainer {
 
     constructor() {
         super('productos')
@@ -8,4 +8,4 @@ class productDaoFirebase extends firebaseContainer {
 
 }
 
-export default productDaoFirebase
+export default ProductDaoFirebase

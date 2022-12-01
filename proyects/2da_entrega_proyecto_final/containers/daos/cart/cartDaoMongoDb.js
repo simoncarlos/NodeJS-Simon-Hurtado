@@ -1,6 +1,6 @@
-import mongoDbContainer from "../../mongoContainer.js"
+import MongoDbContainer from "../../mongoContainer.js"
 
-class cartDaoMongoDb extends mongoDbContainer {
+class CartDaoMongoDb extends MongoDbContainer {
 
     constructor() {
         super('carrito', {
@@ -10,4 +10,4 @@ class cartDaoMongoDb extends mongoDbContainer {
     }
 }
 
-export default cartDaoMongoDb;
+export default CartDaoMongoDb;

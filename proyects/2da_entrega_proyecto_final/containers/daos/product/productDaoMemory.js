@@ -1,7 +1,7 @@
-import memoryContainer from "../../memoryContainer.js";
+import MemoryContainer from "../../memoryContainer.js";
 
 
-class productDaoMemory extends memoryContainer{
+class ProductDaoMemory extends MemoryContainer{
 
     constructor() {
         super()
@@ -9,4 +9,4 @@ class productDaoMemory extends memoryContainer{
 
 }
 
-export default productDaoMemory;
+export default ProductDaoMemory;

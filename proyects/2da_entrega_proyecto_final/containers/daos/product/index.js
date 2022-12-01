@@ -1,25 +1,23 @@
-import config from '../../../src/config.js'
+import config, { TYPE_PERS } from '../../../src/config.js'
 
 let productDao
 
-// process.env.PERS
-
-switch ( "firebase" ) {
+switch ( TYPE_PERS ) {
     case 'json':
-        const { default: productDaoFile } = await import('./productDaoFile.js');
-        productDao = new productDaoFile(config.fileSystem.path)
+        const { default: ProductDaoFile } = await import('./productDaoFile.js');
+        productDao = new ProductDaoFile(config.fileSystem.path)
         break
     case 'firebase':
-        const { default: productDaoFirebase } = await import('./productDaoFirebase.js')
-        productDao = new productDaoFirebase()
+        const { default: ProductDaoFirebase } = await import('./productDaoFirebase.js')
+        productDao = new ProductDaoFirebase()
         break
     case 'mongodb':
-        const { default: productDaoMongoDb } = await import('./productDaoMongoDb.js')
-        productDao = new productDaoMongoDb()
+        const { default: ProductDaoMongoDb } = await import('./productDaoMongoDb.js')
+        productDao = new ProductDaoMongoDb()
         break
     default:
-        const { default: productDaoMemory } = await import('./productDaoMemory.js')
-        productDao = new productDaoMemory()
+        const { default: ProductDaoMemory } = await import('./productDaoMemory.js')
+        productDao = new ProductDaoMemory()
         break
 }
 
