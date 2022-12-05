@@ -1,3 +1,8 @@
+//import { normalize, denormalize, schema } from "normalizr";
+//const { normalize, schema, denormalize } = require('normalizr');
+//import * as normalizr from 'https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.min.js';
+//const denormalize = normalizr.denormalize;
+
 const socket = io();
 
 socket.on("mensaje", mensaje => {
@@ -62,32 +67,57 @@ buttonSubmitChat.addEventListener("click", e => {
     const mail = document.getElementById("mail").value;
     const date = `[${today} ${hour}]`
     const message = document.getElementById("message").value;
+    const name = document.getElementById("nombre").value;
+    const lastanme = document.getElementById("apellido").value;
+    const age = document.getElementById("edad").value;
+    const apodo = document.getElementById("alias").value;
+    const avatar1 = document.getElementById("avatar").value;
     
-    const newMessage = { email: mail, fecha: date, mensaje: message };
+    const newMessage = { 
+        author: {
+            email: mail, 
+            nombre: name,
+            apellido: lastanme,
+            edad: age,
+            alias: apodo,
+            avatar: avatar1
+        },
+        fecha: date, 
+        mensaje: message
+    };
 
     socket.emit("newMessage", newMessage);
 
 });
 
-socket.on("newMessage", message => {
+socket.on("newMessage", async dataNormalized => {
 
     if( document.getElementById("chat__message") !== null ){
         document.getElementById("chat__message").outerHTML = "";
     }
+    const { data, schema } = dataNormalized;
+    console.log( data );
+    // Denormalizacion
+    const chatDenormalized = await normalize.denormalize( data.result, schema , data.entities );
 
-    const chat = document.querySelector(".cuerpo__chat ul");
-    chat.innerHTML += 
-    `<li>
-        <p>
-            <span>
-                ${message.email}
-            </span>
-            <span>
-                ${message.fecha}
-            </span>
-            <span>
-                ${message.mensaje}
-            </span>
-        </p>
-    </li>`;
+    const chatBody = document.querySelector(".cuerpo__chat ul");
+    chatBody.innerHTML = "";
+    chatDenormalized.forEach( message => {
+        chatBody.innerHTML += 
+            `<li>
+                <p>
+                    <span>
+                        ${message.author.email}
+                    </span>
+                    <span>
+                        ${message.fecha}
+                    </span>
+                    <span>
+                        ${message.mensaje}
+                    </span>
+                    <img src=${message.author.avatar}>
+                </p>
+            </li>`;        
+    });
+
 });

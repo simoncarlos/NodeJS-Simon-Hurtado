@@ -63,7 +63,9 @@ body{
     margin: 20px auto;
     width: 50%;
 }
-#mail{
+#mail, #nombre, #apellido, #edad, #alias, #avatar{
+    margin: 10px 0;
+    display: block;
     width: 40%;
     border: 1px solid black;
     border-radius: 10px;
@@ -104,4 +106,7 @@ body{
 .cuerpo__chat ul li p span:nth-child(0n+3){
     font-style: italic;
     color: rgb(0, 134, 56);
+}
+.cuerpo__chat ul li p img{
+    width: 75px;
 }

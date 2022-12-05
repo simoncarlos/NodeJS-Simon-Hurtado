@@ -22,26 +22,3 @@
         <h2 id="cuerpo__subtitulo">No se encontraron productos</h2>
     {{/if}}
 </section>
-
-<section class="cuerpo__chat">
-    <input type="text" name="mail" id="mail" placeholder="diego@gmail.com" required>
-    <ul>
-        {{#if chat.length}}
-            {{#each chat}}
-                <li>
-                    <p>
-                        <span>{{this.email}}</span>
-                        <span>{{this.fecha}}</span>
-                        <span>{{this.mensaje}}</span>
-                    </p>
-                </li>
-            {{/each}}
-        {{/if}}
-        {{#if chat.length}}
-        {{else}}
-            <li id="chat__message">No hay mensajes en el chat</li>
-        {{/if}}
-    </ul>
-    <input type="text" name="message" id="message" placeholder="Ingrese un mensaje.." required>
-    <button id="submitMessage">Enviar mensaje</button>
-</section>
