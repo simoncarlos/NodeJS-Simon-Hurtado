@@ -1,4 +1,4 @@
-import * as ImmutableUtils from './ImmutableUtils';
+import * as ImmutableUtils from './ImmutableUtils.js';
 
 export const normalize = (schema, input, parent, key, visit, addEntity, visitedEntities) => {
   const object = { ...input };

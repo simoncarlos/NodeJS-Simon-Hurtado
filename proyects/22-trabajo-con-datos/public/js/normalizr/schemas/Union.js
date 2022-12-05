@@ -1,4 +1,4 @@
-import PolymorphicSchema from './Polymorphic';
+import PolymorphicSchema from './Polymorphic.js';
 
 export default class UnionSchema extends PolymorphicSchema {
   constructor(definition, schemaAttribute) {

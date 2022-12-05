@@ -1,4 +1,4 @@
-import { isImmutable } from './ImmutableUtils';
+import { isImmutable } from './ImmutableUtils.js';
 
 export default class PolymorphicSchema {
   constructor(definition, schemaAttribute) {

@@ -1,4 +1,4 @@
-import PolymorphicSchema from './Polymorphic';
+import PolymorphicSchema from './Polymorphic.js';
 
 export default class ValuesSchema extends PolymorphicSchema {
   normalize(input, parent, key, visit, addEntity, visitedEntities) {

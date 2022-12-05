@@ -3,6 +3,8 @@
 //import * as normalizr from 'https://cdn.jsdelivr.net/npm/normalizr@3.6.2/dist/normalizr.min.js';
 //const denormalize = normalizr.denormalize;
 
+import { denormalize, schema} from "./normalizr/index.js"
+
 const socket = io();
 
 socket.on("mensaje", mensaje => {
@@ -90,16 +92,26 @@ buttonSubmitChat.addEventListener("click", e => {
 
 });
 
-socket.on("newMessage", async dataNormalized => {
+socket.on("newMessage", dataNormalized => {
 
     if( document.getElementById("chat__message") !== null ){
         document.getElementById("chat__message").outerHTML = "";
     }
-    const { data, schema } = dataNormalized;
-    console.log( data );
+    //const { data, schema } = dataNormalized;
+    //console.log( data );
     // Denormalizacion
-    const chatDenormalized = await normalize.denormalize( data.result, schema , data.entities );
-
+    console.log(dataNormalized);
+    const authorSchema = new schema.Entity('authors', {}, {
+        idAttribute: 'email'
+    });
+    const chatSchema = new schema.Entity('chats', { author: authorSchema });
+    const chatListSchema = [chatSchema];
+    //const deno = denormalize(dataNormalized.dataNorm, ...dataNormalized.schema);
+    //const chatDenormalized = denormalize(dataNormalized.dataNorm, dataNormalized.schema[0]);// denormalize(dataNormalized.dataNorm.entities, dataNormalized.schema[0], dataNormalized.dataNorm.result);
+    const chatDenormalized = denormalize(dataNormalized.result, chatListSchema, dataNormalized.entities);//denormalize(dataNormalized.dataNorm, dataNormalized.schema);
+    //const chatDenormalized = denormalize(dataNormalized.dataNorm, dataNormalized.schema); 
+    console.log( chatDenormalized );
+    //chatDenormalized.messages.author = chatDenormalized.authors.
     const chatBody = document.querySelector(".cuerpo__chat ul");
     chatBody.innerHTML = "";
     chatDenormalized.forEach( message => {

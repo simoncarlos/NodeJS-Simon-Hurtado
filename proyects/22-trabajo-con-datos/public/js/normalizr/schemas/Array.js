@@ -1,4 +1,4 @@
-import PolymorphicSchema from './Polymorphic';
+import PolymorphicSchema from './Polymorphic.js';
 
 const validateSchema = (definition) => {
   const isArray = Array.isArray(definition);

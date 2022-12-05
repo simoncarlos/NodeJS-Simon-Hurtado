@@ -1,9 +1,9 @@
-import * as ImmutableUtils from './schemas/ImmutableUtils';
-import EntitySchema from './schemas/Entity';
-import UnionSchema from './schemas/Union';
-import ValuesSchema from './schemas/Values';
-import ArraySchema, * as ArrayUtils from './schemas/Array';
-import ObjectSchema, * as ObjectUtils from './schemas/Object';
+import * as ImmutableUtils from './schemas/ImmutableUtils.js';
+import EntitySchema from './schemas/Entity.js';
+import UnionSchema from './schemas/Union.js';
+import ValuesSchema from './schemas/Values.js';
+import ArraySchema, * as ArrayUtils from './schemas/Array.js';
+import ObjectSchema, * as ObjectUtils from './schemas/Object.js';
 
 const visit = (value, parent, key, schema, addEntity, visitedEntities) => {
   if (typeof value !== 'object' || !value) {
