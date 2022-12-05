@@ -1,0 +1,47 @@
+<section class="cuerpo__respuesta">
+    <table class="cuerpo__tabla">
+        {{#if products.length}}
+            <tr class="tabla__encabezado">
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Foto </th>
+            </tr>
+            {{#each products}}
+                <tr class="tabla__cuerpo">
+                    <td>{{this.nombre}}</td>
+                    <td>{{this.precio}}</td>
+                    <td>
+                        <img src="{{this.thumbnail}}" alt="{{this.nombre}}" width="40px" height="40px">
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
+    </table>
+    {{#if products.length}}
+    {{else}}
+        <h2 id="cuerpo__subtitulo">No se encontraron productos</h2>
+    {{/if}}
+</section>
+
+<section class="cuerpo__chat">
+    <input type="text" name="mail" id="mail" placeholder="diego@gmail.com" required>
+    <ul>
+        {{#if chat.length}}
+            {{#each chat}}
+                <li>
+                    <p>
+                        <span>{{this.email}}</span>
+                        <span>{{this.fecha}}</span>
+                        <span>{{this.mensaje}}</span>
+                    </p>
+                </li>
+            {{/each}}
+        {{/if}}
+        {{#if chat.length}}
+        {{else}}
+            <li id="chat__message">No hay mensajes en el chat</li>
+        {{/if}}
+    </ul>
+    <input type="text" name="message" id="message" placeholder="Ingrese un mensaje.." required>
+    <button id="submitMessage">Enviar mensaje</button>
+</section>
