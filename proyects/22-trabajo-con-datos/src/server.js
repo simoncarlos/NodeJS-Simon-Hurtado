@@ -18,7 +18,7 @@ const io = new socketio.Server(httpServer);
 app.use(express.static('../public'))
 app.engine("handlebars", exphbs.engine() );
 app.use( "/productos", aplication );
-//app.use( "/api", mock);
+app.use( "/api", mock);
 app.set("view engine", "handlebars");
 app.set("views", __dirname + "/../public/views/aplication" );
 

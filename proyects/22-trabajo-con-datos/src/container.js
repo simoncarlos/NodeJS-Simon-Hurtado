@@ -10,7 +10,7 @@ export class Container{
         try{
             const content = await fs.promises.readFile(`../database/${this.fileName}`, 'utf-8')
             const data = await JSON.parse(content)
-            return data//.chats
+            return data
         }catch(err){
             console.log(err);
         }
@@ -21,8 +21,7 @@ export class Container{
             const data = await this.readFile();
             object.id = object.author.email;
             data.push( object );
-            const content = JSON.stringify(data)//( { chats: data} );
-            //const content = JSON.stringify( data );
+            const content = JSON.stringify(data)
             await fs.promises.writeFile(`../database/${this.fileName}`, content);
         }catch(err){
             console.log(err);
