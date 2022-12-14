@@ -4,10 +4,12 @@ import { aplication } from "./routers/routerApp.js";
 import { logout } from "./routers/routerLogout.js";
 import { login } from "./routers/routerLogin.js";
 
-import {engine} from "express-handlebars";
-import path from 'path';
-import {fileURLToPath} from 'url';
 import { sessionHandler as session } from "./middlewares/session.js";
+import { passportMiddleware, passportSessionHandler } from "./middlewares/passport.js";
+
+import {engine} from "express-handlebars";
+import {fileURLToPath} from 'url';
+import path from 'path';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -18,7 +20,9 @@ export const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use( session );
+app.use(session);
+app.use(passportMiddleware)
+app.use(passportSessionHandler)
 
 // configuracion plantillas
 

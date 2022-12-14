@@ -33,6 +33,8 @@
     "mongoose": "^6.7.4",
     "mysql2": "^2.3.3",
     "normalizr": "^3.6.2",
+    "passport": "^0.6.0",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "pug": "^3.0.2",
     "redis": "^4.5.1",

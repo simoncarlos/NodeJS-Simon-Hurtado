@@ -1,17 +1,6 @@
 import { Router } from "express";
+import { logoutController } from "../controllers/logoutController.js";
 
 export const logout = new Router();
 
-logout.get('/', (req, res) => {
-
-    const name = req.session.username;
-
-    req.session.destroy( err => {
-        if (err) {
-            res.json({ status: 'Logout ERROR', body: err });
-        } else {
-            res.render( "logout", { name: name } )
-        }
-    })
-
-});
+logout.get('/', logoutController);

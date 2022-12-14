@@ -1,18 +1,20 @@
 import { Router } from "express";
 
+import { loginController } from "../controllers/loginController.js";
+import { loginSucessfulControler } from "../controllers/loginController.js";
+import { loginAuthController } from "../controllers/authController.js";
+
 export const login = new Router();
 
-login.get('/', (req, res) => { 
-    res.render( "login" ); 
-});
+const nameUser = "pepe";
 
-login.post("/", (req, res) => {
-
-    if ( req.body.username !== 'pepe') {
-        return res.send('Fallo de logueo')
+function auth(req, res, next) {
+    if (req.body.username  === nameUser) {
+        return next()
     }
+    return res.redirect("../login");
+}
 
-    req.session.username = req.body.username;
-    res.redirect("../aplication");
+login.get('/', loginController);
 
-});
+login.post("/", loginAuthController, loginSucessfulControler);
