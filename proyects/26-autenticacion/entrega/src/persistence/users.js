@@ -16,25 +16,21 @@ const dbUsers = dbCoderhouse.collection("users");
 
 export async function saveUser( user ){
     await dbUsers.insertOne( user )
-    //users.push( user );
 }
 
 export async function getUserByName( username ) {
-    const user = await dbUsers.findOne( { name: username } );
-    //const user = users.find(u => u.username === username)
+    const user = await dbUsers.findOne( { username: username } );
     if (!user) throw new Error('no existe un usuario con ese nombre')
     return user
 }
 
 export async function uniqueName( username ){
-    const user = await dbUsers.findOne( { name: username } );
-    //const user = users.find(u => u.username === username);
+    const user = await dbUsers.findOne( { username: username } );
     if (user) throw new Error('el nombre de usuario no está disponible');
 }
 
 export async function getUserById( id ) {
     const user = await dbUsers.findOne( { id: id } );
-    //const user = users.find(u => u.id === id)
     if (!user) throw new Error('no existe un usuario con ese id')
     return user
 }
