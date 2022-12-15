@@ -5,6 +5,8 @@ import { authenticate } from "../api/authApi.js";
 export const localRegister = new Strategy(
     {
         passReqToCallback: true,
+        //usernameField: 'username',
+        //passwordField: 'password',
     },
     (req, username, password, done) => {
         try {
@@ -17,7 +19,7 @@ export const localRegister = new Strategy(
 );
 
 export const localLogin = new Strategy(
-    ( username, password, done ) => {
+    ( username, password , done ) => {
         try {
             const user = authenticate(username, password);
             done(null, user);

@@ -1,9 +1,9 @@
 import { createUser } from "../models/user.js";
 import { saveUser, uniqueName } from "../persistence/users.js";
 
-export function registerUser( dataUser ){
-    uniqueName( dataUser.username );
+export async function registerUser( dataUser ){
+    await uniqueName( dataUser.username );
     const user = createUser( dataUser );
-    saveUser( user );
+    await saveUser( user );
     return user
 }

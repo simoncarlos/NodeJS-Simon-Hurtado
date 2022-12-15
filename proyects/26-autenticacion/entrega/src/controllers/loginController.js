@@ -1,3 +1,7 @@
+import passport from "passport";
+
+export const loginAuthController = passport.authenticate('login', { failureRedirect: '/failLogin' });
+
 export const loginController = (req, res) => { 
     res.render( "login" ); 
 };

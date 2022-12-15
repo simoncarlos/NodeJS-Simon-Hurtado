@@ -1,9 +1,9 @@
 import { getUserByName } from "../persistence/users.js"
 
-export function authenticate ( username, password ) {
+export async function authenticate ( username, password ) {
     let user
     try {
-        user = getUserByName( username );
+        user = await getUserByName( username );
     } catch (error) {
         throw new Error('error de autenticacion')
     }
