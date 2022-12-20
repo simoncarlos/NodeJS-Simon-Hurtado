@@ -1,0 +1,135 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: rgb(186, 186, 186);
+}
+.formulario{
+    width: auto;
+}
+.formulario form{
+    width: 50%;
+    margin: 10px auto;
+}
+.formulario form div{
+    width: 100%;
+}
+.formulario form div label{
+    display: block;
+    margin: 10px 0;
+}
+.formulario form div input{
+    border: 1px solid black;
+    border-radius: 10px;
+    width: 75%;
+    padding-left: 10px;
+    height: 30px;
+}
+#submitProduct{
+    color: black;
+    padding: 10px 20px;
+    background-color: green;
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.cuerpo__respuesta{
+    width: 50%;
+    margin: 30px auto;
+    height: 130px;
+    overflow-y: auto;
+}
+.cuerpo__tabla{
+    width: 100%;
+}
+.cuerpo__tabla tr{
+    height: 35px;
+}
+.cuerpo__tabla th{
+    width: 33%;
+    height: 30px;
+    border: 1px solid white;
+    text-align: center;
+}
+.cuerpo__tabla td{
+    width: 33%;
+    border: 1px solid white;
+    text-align: center;
+}
+
+
+.cuerpo__chat{
+    margin: 20px auto;
+    width: 50%;
+}
+#email, #nombre, #apellido, #edad, #alias, #avatar{
+    margin: 10px 0;
+    display: block;
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 30px;
+    padding-left: 10px;
+}
+#message{
+    width: 40%;
+    border: 1px solid black;
+    border-radius: 10px;
+    height: 30px;
+    padding-left: 10px;
+}
+#submitMessage{
+    color: black;
+    padding: 5px 20px;
+    background-color: rgb(56, 142, 255);
+    margin: 10px 0;
+    border-radius: 5px;
+}
+.cuerpo__chat ul{
+    margin: 30px 0;
+    height: 90px;
+    overflow-y: auto;
+}
+.cuerpo__chat ul li{
+    list-style: none;
+    height: 30px;
+}
+.cuerpo__chat ul li p span:nth-child(0n+1){
+    font-weight: 900;
+    color: blue;
+}
+.cuerpo__chat ul li p span:nth-child(0n+2){
+    margin: 0 10px;
+    color: brown;
+}
+.cuerpo__chat ul li p span:nth-child(0n+3){
+    font-style: italic;
+    color: rgb(0, 134, 56);
+}
+.cuerpo__chat ul li p img{
+    width: 75px;
+}
+.welcome{
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.welcome button{
+    color: white;
+    background-color: blue;
+    padding: 10px 20px;       
+}
+.formulario-login button, .formulario-register button{
+    margin-top: 40px;
+    color: white;
+    background-color: blue;
+    padding: 10px 20px;
+}
+
+#returnRegister, #returnLogin {
+    color: white;
+    background-color: green;
+    padding: 10px 20px;
+}
