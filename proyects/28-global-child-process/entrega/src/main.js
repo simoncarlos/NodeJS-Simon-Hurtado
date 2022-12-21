@@ -11,7 +11,7 @@ const io = new socketio.Server(httpServer);
 socketConfig( io );
 const args = parseArgs( process.argv.slice(2) );
 
-process.env.PORT = args.p || 6060 ;
+process.env.PORT = args.p || 8080 ;
 
 const server = httpServer.listen(process.env.PORT, () => {
     console.log(`servidor conectado en puerto ${server.address().port }`);

@@ -133,3 +133,20 @@ body{
     background-color: green;
     padding: 10px 20px;
 }
+.info{
+    width: 100vw;
+    display: flex; 
+    align-items: center;
+    justify-content: center;
+}
+.info article{
+    width: auto;
+}
+.info article ul{
+    list-style: none;
+}
+.info article ul li{
+    text-align: center;
+    color: black;
+    margin: 20px 0;
+}

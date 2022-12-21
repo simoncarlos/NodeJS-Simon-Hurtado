@@ -6,6 +6,8 @@ import { login } from "./routers/routerLogin.js";
 import { failLogin } from "./routers/routerFailLogin.js";
 import { register } from "./routers/routerRegister.js";
 import { failRegister } from "./routers/routerFailRegister.js"
+import { information } from "./routers/routerInfo.js";
+import { random } from "./routers/routerRandoms.js";
 
 import { sessionHandler as session } from "./middlewares/session.js";
 import { passportMiddleware, passportSessionHandler } from "./middlewares/passport.js";
@@ -43,3 +45,5 @@ app.use("/register", register);
 app.use("/failRegister", failRegister)
 app.use("/aplication", aplication);
 app.use("/logout", logout);
+app.use("/info", information);
+app.use("/api/randoms", random);
