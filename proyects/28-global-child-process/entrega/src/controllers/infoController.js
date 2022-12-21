@@ -1,4 +1,5 @@
 import parseArgs from "minimist";
+import path from 'path';
 
 export const infoController = (req, res) => {
     const dataProcess = {
@@ -8,8 +9,7 @@ export const infoController = (req, res) => {
         memory: process.memoryUsage(),
         path: process.cwd(),
         processId: process.pid,
-        folder: process.execPath,
+        folder: path.resolve(process.cwd(), "../"),
     }
-    console.log(dataProcess);
     res.render("info", dataProcess);
 };

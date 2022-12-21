@@ -1,8 +1,8 @@
 <section class="info">
     <article>
         <ul>
-            {{#each products}}
-                <li>Numero(clave):  | Cantidad: </li>
+            {{#each numbers}}
+                <li>Numero(clave):{{@key}}  | Cantidad: {{this}} </li>
             {{/each}}
         </ul>
     </article>
