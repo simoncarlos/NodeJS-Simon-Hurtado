@@ -1,0 +1,14 @@
+punto 1) C)
+forever list
+
+punto 1) D)
+pm2 start main.js
+pm2 start main -i
+pm2 list
+
+punto 1) E)
+pm2 start main.js --watch
+pm2 start main --watch -i
+
+punto 1) F)
+pm2 delete all

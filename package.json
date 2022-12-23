@@ -28,6 +28,7 @@
     "express-session": "^1.17.3",
     "faker": "^5.5.3",
     "firebase-admin": "^11.3.0",
+    "forever": "^4.0.3",
     "hbs": "^4.2.0",
     "knex": "^2.3.0",
     "minimist": "^1.2.7",
