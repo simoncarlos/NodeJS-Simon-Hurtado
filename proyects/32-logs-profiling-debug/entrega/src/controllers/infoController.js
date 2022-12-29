@@ -14,5 +14,6 @@ export const infoController = (req, res) => {
         quantity: process._eventsCount,
     }
     loggerConsole.info(`Ruta: ${req.url}, metodo: ${req.method}`);
+    //console.log(`argumentos: ${dataProcess.arg} \n S.O: ${dataProcess.so} \n Node: ${dataProcess.node} \n memory: ${dataProcess.memory} \n path: ${dataProcess.path} \n Id Proceso: ${dataProcess.processId} \n Carpeta: ${dataProcess.folder} \n Cantidad: ${dataProcess.quantity}`);
     res.render("info", dataProcess);
 };
