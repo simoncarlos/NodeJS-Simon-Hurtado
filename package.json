@@ -18,6 +18,8 @@
   },
   "homepage": "https://github.com/diegosimonnn/NodeJS-Simon-Hurtado#readme",
   "dependencies": {
+    "artillery": "^2.0.0-27",
+    "autocannon": "^7.10.0",
     "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "connect-redis": "^6.1.3",
