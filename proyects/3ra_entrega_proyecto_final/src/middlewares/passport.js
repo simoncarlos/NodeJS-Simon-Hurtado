@@ -8,7 +8,7 @@ passport.use("login", strategies.localLogin);
 
 export const passportMiddleware = passport.initialize();
 
-passport.serializeUser((user, done) => {
+passport.serializeUser((user, done) => { 
     done(null, user.id)
 })
 

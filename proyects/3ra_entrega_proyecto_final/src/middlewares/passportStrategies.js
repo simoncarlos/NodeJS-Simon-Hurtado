@@ -6,7 +6,7 @@ export const localRegister = new Strategy(
     {
         passReqToCallback: true,
     },
-    async (req, username, password, done) => {
+    async (req, name, password, done) => {
         try {
             const user = await registerUser(req.body);
             done(null, user);

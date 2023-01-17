@@ -1,4 +1,4 @@
-import config, { TYPE_PERS } from '../../../src/config.js'
+import config, { TYPE_PERS } from '../../../config.js'
 
 let cartDao
 

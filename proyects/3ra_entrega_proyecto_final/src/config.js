@@ -1,4 +1,6 @@
+import log4js from "log4js";
 import mongoose from 'mongoose';
+import 'dotenv/config'
 
 const config = {
     fileSystem: {
@@ -17,8 +19,37 @@ const config = {
     }
 };
 
-export const TYPE_PERS =  "json";
+log4js.configure({
+    appenders: {
+        infoConsole: { type: 'console' },
+        warnFile: { type: 'file', filename: 'warn.log' },
+        errorFile: { type: 'file', filename: 'error.log' }
+    },
+    categories: {
+        default: { appenders: ['infoConsole'], level: 'trace' },
+        consola: { appenders: ['infoConsole'], level: 'info' },
+        archivoWarn: { appenders: ['warnFile'], level: 'warn' },
+        archivoError: { appenders: ['errorFile'], level: 'error' }
+    }
+});
 
 await mongoose.connect(config.mongodb.cnxStr, config.mongodb.options);
 
+export const TYPE_PERS =  "json";
+export const TYPE_SERVER = "Fork";
+export const loggerConsole = log4js.getLogger("consola");
+export const loggerWarn = log4js.getLogger("archivoWarn");
+export const loggerError = log4js.getLogger("archivoError");
 export default config
+
+export const NODE_ENV = process.env.NODE_ENV ?? 'development'
+
+export const nodemailerUser = process.env.MAIL_AUTH_USER
+export const nodemailerPass = process.env.MAIL_AUTH_PASS
+
+export const twilioAccountSid = process.env.TWILIO_ID
+export const twilioAuthToken = process.env.TWILIO_TOKEN
+export const twilioSmsPhoneNumber = process.env.TWILIO_SMS_NUMBER
+export const twilioWhatsappPhoneNumber = process.env.TWILIO_WHATSAPP_NUMBER
+export const smsAdmin = process.env.SMS_ADMIN
+export const emailAdmin = process.env.EMAIL_ADMIN

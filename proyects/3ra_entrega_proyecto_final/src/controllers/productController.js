@@ -1,5 +1,14 @@
-import { productDao } from "../containers/daos/product.js";
+import { productDao } from "../containers/daos/product/index.js";
 import { getNewProductId } from "../models/productId.js";
+
+import {
+    getProductsListService,
+    getProductService,
+    createProductService,
+    updateProductService,
+    deleteProductService
+} from "../services/productServices.js"
+
 
 function responseSend( res, product ){
     if( product.status === 200 ){
@@ -10,27 +19,26 @@ function responseSend( res, product ){
 }
 
 export const getProductsListController = async (req, res) => { 
-    const products = await productDao.getObjects();
+    const products = await getProductsListService();
     res.json(products);
 };
 
 export const getProductController = async (req, res) => { 
-    const product = await productDao.getObjectById(req.params.id);
+    const product = await getProductService( req );
     responseSend( res, product );
 };
 
 export const createProductController = async (req, res) => { 
-    req.body.id = await getNewProductId();
-    const status = await productDao.saveObject( req.body );
+    const status = await createProductService( req );
     res.sendStatus( status );
 };
 
 export const updateProductController = async(req, res) => { 
-    const status = await productDao.updateObject( req.params.id, req.body );
+    const status = await updateProductService( req );
     res.sendStatus( status );
 };
 
 export const deleteProductController = async (req, res) => { 
-    const status = await productDao.deleteObject( req.params.id );
+    const status = await deleteProductService( req );
     res.sendStatus(status);
 };

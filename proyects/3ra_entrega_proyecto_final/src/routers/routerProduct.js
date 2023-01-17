@@ -17,7 +17,7 @@ products.get( "/", getProductsListController);
 
 products.get( "/:id", getProductController);
 
-products.post( "/", requireAuth, createProductController);// aca antes estaba el checkadmin
+products.post( "/", requireAuth, createProductController);
 
 products.put( "/:id", requireAuth, updateProductController);
 

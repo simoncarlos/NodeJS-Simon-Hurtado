@@ -1,4 +1,4 @@
-import { cartDao } from "../containers/daos/cart.js";
+import { cartDao } from "../containers/daos/cart/index.js";
 
 export const getNewCartId = async () => {
     const data = await cartDao.getObjects();

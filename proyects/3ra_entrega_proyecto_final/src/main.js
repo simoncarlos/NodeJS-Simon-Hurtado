@@ -1,9 +1,9 @@
 import app from "./server.js";
+import { TYPE_SERVER } from "./config.js";
+import { clusterServer } from "./servers/cluster.js";
+import forkServer from "./servers/fork.js";
 
 const PORT = process.env.PORT || 8080;
 
-const server = app.listen( PORT, () => {
-    console.log(`Servidor http escuchando en el puertp ${server.address().port}`);
-});
-
-server.on("error", error => console.log(`Error al establecer la conexion con el servidor ${error}`));
+if( TYPE_SERVER === "Cluster" ) clusterServer( PORT, app );
+else forkServer( PORT, app );

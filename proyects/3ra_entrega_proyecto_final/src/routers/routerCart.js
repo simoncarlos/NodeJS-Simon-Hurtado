@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { requireAuth } from "../middlewares/authorization.js";
 
 const cart = new Router();
 
@@ -9,17 +10,20 @@ import {
     deleteCartController,
     addProductController,
     getCartProductsController,
-    deleteCartProductController 
+    deleteCartProductController,
+    orderController
 } from "../controllers/cartController.js";
 
-cart.post( "/", createCartController);
+cart.post( "/", requireAuth, createCartController);
 
-cart.delete( "/:id_carrito", deleteCartController);
+cart.delete( "/:id_carrito", requireAuth, deleteCartController);
 
-cart.post( "/:id_cart/products", addProductController);
+cart.post( "/:id_cart/products", requireAuth, addProductController);
 
-cart.get( "/:id_cart/products", getCartProductsController);
+cart.get( "/:id_cart/products", requireAuth, getCartProductsController);
 
-cart.delete( "/:id_cart/products/:id_prod", deleteCartProductController);
+cart.delete( "/:id_cart/products/:id_prod", requireAuth, deleteCartProductController);
+
+cart.get("/order/:id_cart", requireAuth, orderController);
 
 export default cart;

@@ -1,4 +1,4 @@
-import { productDao } from "../containers/daos/product";
+import { productDao } from "../containers/daos/product/index.js";
 
 export const getNewProductId = async () => {
     const data = await productDao.getObjects();

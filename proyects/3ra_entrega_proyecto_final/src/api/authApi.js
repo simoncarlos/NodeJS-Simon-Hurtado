@@ -1,10 +1,9 @@
-import { getUserByName } from "../persistence/users.js"
 import { userDao } from "../containers/daos/user/index.js";
 
 const getUserByName = async ( name ) => {
     const users = await userDao.getObjects();
-    const userByName = users.filter( user => user.name === name );
-    if ( userByName.length !== 0 ) throw new Error('no existe un usuario con ese nombre')
+    let userByName = users.filter( user => user.username === name );
+    if ( userByName.length === 0 ) throw new Error('no existe un usuario con ese nombre')
     return userByName[0]
 }
 
