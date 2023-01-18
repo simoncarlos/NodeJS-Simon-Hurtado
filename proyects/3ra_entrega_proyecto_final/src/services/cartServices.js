@@ -57,7 +57,6 @@ export const orderControllerService = async ( req ) => {
     if( cart.status === 200 ){
         const productos = await productDao.getObjects();
         const productsList = productos.filter( product => cart.data.productos.includes( product.id ) );
-        
         //await clienteMail.enviar({ asunto: 'Nuevo Pedido', destinatario: emailAdmin, mensaje: productsList })
         //await clienteSms.enviar({ numero: smsAdmin, texto: "Su pedido fue recibido!" })
         //await clienteWsp.enviar({ numero: smsAdmin, texto: `Su pedido fue recibido con exito!` })

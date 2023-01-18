@@ -24,10 +24,10 @@ app.use( passportSessionHandler );
 
 app.use( "/api/products", products );
 app.use( "/api/shoppingcart", cart );
-app.use( "/login", login );
-app.use( "/failLogin", failLogin );
 app.use( "/api/users", users );
 app.use( "/failRegister", failRegister );
+app.use( "/login", login );
+app.use( "/failLogin", failLogin );
 app.use( "/logout", logout );
 
 
