@@ -1,0 +1,10 @@
+Utilizar autocannon en línea de comandos, emulando 100 conexiones concurrentes realizadas en un tiempo de 20 segundos. 
+Extraer un reporte con los resultados(puede ser un print screen de la consola).
+
+El diagrama de flama con 0x se encuentra en la carpeta 0x/flamegraph.html
+En este se puede observar que el middleware de passport es el que consume mas recursos al momento de la ejecucion del servidor junto con el de session.
+
+En cuanto los print se encuentran en esta misma carpeta.
+Se puede observar que la latencia media es de 1007.89ms cuando se utiliza el console.log con respecto a los 1256.44ms cuando no se utiliza.
+Ademas los request por segundo son mayores cuando se utiliza el console.log(97.65) con respecto a los 79.05 cuando no se utiliza.
+Ambas ejecuciones realizaron un total de 100 conexiones concurrentes en un tiempo de 20 segundos.

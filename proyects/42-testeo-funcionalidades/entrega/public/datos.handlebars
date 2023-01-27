@@ -1,0 +1,76 @@
+<div class="welcome">
+    <h1> Bienvenido: {{name}} </h1>
+    <button id="logout" > Salir </button>
+</div>
+
+<section class="formulario">
+    <form>
+        <div>
+            <label for="nombre">Nombre: </label>
+            <input type="text" name="nombre" id="nombre" required>
+        </div>
+        <div>
+            <label for="precio">Precio: </label>
+            <input type="number" name="precio" id="precio" required>
+        </div>
+        <div>
+            <label for="thumbnail">Foto URL: </label>
+            <input type="text" name="thumbnail" id="thumbnail" required>
+        </div>
+        <button id="submitProduct">Enviar</button>
+    </form>
+</section>
+
+<section class="cuerpo__respuesta">
+    <table class="cuerpo__tabla">
+        {{#if products.length}}
+            <tr class="tabla__encabezado">
+                <th> Nombre </th>
+                <th> Precio </th>
+                <th> Foto </th>
+            </tr>
+            {{#each products}}
+                <tr class="tabla__cuerpo">
+                    <td>{{this.nombre}}</td>
+                    <td>{{this.precio}}</td>
+                    <td>
+                        <img src="{{this.thumbnail}}" alt="{{this.nombre}}" width="40px" height="40px">
+                    </td>
+                </tr>
+            {{/each}}
+        {{/if}}
+    </table>
+    {{#if products.length}}
+    {{else}}
+        <h2 id="cuerpo__subtitulo">No se encontraron productos</h2>
+    {{/if}}
+</section>
+
+<section class="cuerpo__chat">
+    <input type="text" name="mail" id="email" placeholder="diego@gmail.com" required>
+    <input type="text" name="nombre" id="nombreUser" placeholder="carlos" required>
+    <input type="text" name="apellido" id="apellido" placeholder="Simon" required>
+    <input type="text" name="edad" id="edad" placeholder="18" required>
+    <input type="text" name="alias" id="alias" placeholder="Limoncito" required>
+    <input type="text" name="avatar" id="avatar" placeholder="url.com" required>
+    <ul>
+        {{#if chat.length}}
+            {{#each chat}}
+                <li>
+                    <p>
+                        <span>{{this.author.mail}}</span>
+                        <span>{{this.fecha}}</span>
+                        <span>{{this.mensaje}}</span>
+                        <img src={{this.author.avatar}} alt="">
+                    </p>
+                </li>
+            {{/each}}
+        {{/if}}
+        {{#if chat.length}}
+        {{else}}
+            <li id="chat__message">No hay mensajes en el chat</li>
+        {{/if}}
+    </ul>
+    <input type="text" name="message" id="message" placeholder="Ingrese un mensaje.." required>
+    <button id="submitMessage">Enviar mensaje</button>
+</section>

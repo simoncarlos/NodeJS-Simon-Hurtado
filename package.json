@@ -19,7 +19,9 @@
   "homepage": "https://github.com/diegosimonnn/NodeJS-Simon-Hurtado#readme",
   "dependencies": {
     "artillery": "^2.0.0-27",
+    "assert": "^2.0.0",
     "autocannon": "^7.10.0",
+    "axios": "^1.2.5",
     "compression": "^1.7.4",
     "connect-mongo": "^4.6.0",
     "connect-redis": "^6.1.3",
@@ -36,6 +38,7 @@
     "knex": "^2.3.0",
     "log4js": "^6.7.1",
     "minimist": "^1.2.7",
+    "mocha": "^10.2.0",
     "mongodb": "^4.12.1",
     "mongoose": "^6.7.4",
     "mysql2": "^2.3.3",
