@@ -1,0 +1,9 @@
+Consigna: Utilizar como test de carga Artillery en linea de comandos, emulando 50 conexiones concurrentes con 20 request por cada una. Extraer un reporte con los resultados en un archivo de texto.
+
+Primero realicé las 50 conexiones concurrentes con 20 request con el console.log, sus resultados fueron los siguientes:
+
+El "http.request_rate" fue de 78 por segundo, a diferencia de los 119 por segundo sin el console.log, haciendo que sin el mismo el servidor pudiese responder peticiones de forma mas rapida.
+Como conclusion los resultados también fueron reflejados en la media del tiempo de respuesta, 399.5 con el console.log y 361.5 sin el console.log.
+
+La media de la duracion de una sesion para un usuario virtual fue de 12459.8, a comparacion de los 7865.6 de duracion sin el console.log.
+De esta forma el sin el console.log en la ruta "/info" el promedio del vusers.session(virtual users session) es menor con respecto a cuando si lo tiene.
